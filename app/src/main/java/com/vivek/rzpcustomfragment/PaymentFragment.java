@@ -96,12 +96,13 @@ public class PaymentFragment extends Fragment implements PaymentResultListener {
             @Override
             public void onClick(View v) {
                 try {
-                    payload = new JSONObject("{currency: 'INR'}");
-                    payload.put("amount", "111");
-                    payload.put("contact", "9999999999");
-                    payload.put("email", "customer@name.com");
-//                                    payload.put("upi_app_package_name", app.getPackageName());
-                    payload.put("display_logo", true);
+                    payload = new JSONObject();
+                    payload.put("currency","INR");
+                    payload.put("amount", 100);
+                    payload.put("email", "gaurav.kumar@example.com");
+                    payload.put("contact", "9123456789");
+                    payload.put("method", "netbanking");
+                    payload.put("bank", "SBIN");
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -111,11 +112,11 @@ public class PaymentFragment extends Fragment implements PaymentResultListener {
                     JSONArray jArray = new JSONArray();
                     jArray.put("in.org.npci.upiapp");
                     jArray.put("com.snapwork.hdfc");
-                    payload.put("description","Credits towards consultation");
-                    payload.put("method", "upi");
-                    payload.put("_[flow]", "intent");
-                    payload.put("preferred_apps_order", jArray);
-                    payload.put("other_apps_order", jArray);
+//                    payload.put("description","Credits towards consultation");
+//                    payload.put("method", "upi");
+//                    payload.put("_[flow]", "intent");
+//                    payload.put("preferred_apps_order", jArray);
+//                    payload.put("other_apps_order", jArray);
                     sendRequest();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -179,5 +180,9 @@ public class PaymentFragment extends Fragment implements PaymentResultListener {
     public void onBackPressed(){
         webView.setVisibility(View.GONE);
         payBtn.setVisibility(View.VISIBLE);
+        razorpay.onBackPressed();
     }
+
+
+
 }
